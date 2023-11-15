@@ -1,6 +1,6 @@
 # Experiment-6---Heart-attack-prediction-using-MLP
 ## Aim:
-      To construct a  Multi-Layer Perceptron to predict heart attack using Python
+ To construct a  Multi-Layer Perceptron to predict heart attack using Python
 ## Algorithm:
 Step 1:Import the required libraries: numpy, pandas, MLPClassifier, train_test_split, StandardScaler, accuracy_score, and matplotlib.pyplot.<br>
 Step 2:Load the heart disease dataset from a file using pd.read_csv().<br>
@@ -15,12 +15,53 @@ Step 10:Print the accuracy of the model.<br>
 Step 11:Plot the error convergence during training using plt.plot() and plt.show().<br>
 
 ## Program:
+```
+NAME:V.A.JITHENDRA
+REG.NO:212221230043
+import numpy as np
+import pandas as pd 
+from sklearn.neural_network import MLPClassifier 
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler 
+from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
 
+data=pd.read_csv("/content/heart.csv")
+X=data.iloc[:, :-1].values #features 
+Y=data.iloc[:, -1].values  #labels 
 
+X_train,X_test,y_train,y_test=train_test_split(X,Y,test_size=0.2,random_state=42)
+
+scaler=StandardScaler()
+X_train=scaler.fit_transform(X_train)
+X_test=scaler.transform(X_test)
+
+mlp=MLPClassifier(hidden_layer_sizes=(100,100),max_iter=1000,random_state=42)
+training_loss=mlp.fit(X_train,y_train).loss_curve_
+
+y_pred=mlp.predict(X_test)
+
+accuracy=accuracy_score(y_test,y_pred)
+print("Accuracy",accuracy)
+
+plt.plot(training_loss)
+plt.title("MLP Training Loss Convergence")
+plt.xlabel("Iteration")
+plt.ylabel("Training Losss")
+plt.show()
+```
 
 ## Output:
+### X Values:
+![image](https://github.com/Hemapriya-2004/Experiment-6---Heart-attack-prediction-using-MLP/assets/94184828/300a76a6-d41d-43bf-9d90-55e022065589)
+### Y Values:
+![image](https://github.com/Hemapriya-2004/Experiment-6---Heart-attack-prediction-using-MLP/assets/94184828/fddf739b-bf83-4eef-a41d-36b6df93e6fb)
+### Accuracy:
+![image](https://github.com/Hemapriya-2004/Experiment-6---Heart-attack-prediction-using-MLP/assets/94184828/b7ddd509-020c-410c-bac7-28534e52e10e)
+### Loss Convergence Graph:
+![image](https://github.com/Hemapriya-2004/Experiment-6---Heart-attack-prediction-using-MLP/assets/94184828/e9ca169f-b93f-4185-b5a5-32128572c461)
 
 ## Result:
-     Thus, an ANN with MLP is constructed and trained to predict the heart attack using python.
+ Thus, an ANN with MLP is constructed and trained to predict the heart attack using python.
      
 
